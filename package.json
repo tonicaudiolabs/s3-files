@@ -1,0 +1,33 @@
+{
+  "name": "s3-files",
+  "version": "0.0.1",
+  "description": "Stream selected files from an Amazon S3 bucket/folder",
+  "main": "s3-files.js",
+  "scripts": {
+    "test": "tap --cov test/test*.js"
+  },
+  "keywords": [
+    "aws",
+    "S3",
+    "amazon",
+    "bucket",
+    "folder",
+    "stream"
+  ],
+  "author": "Ronald Luitwieler",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/orangewise/s3-files.git"
+  },  
+  "dependencies": {
+    "aws-sdk": "^2.2.38",
+    "concat-stream": "^1.5.1",
+    "stream-array": "^1.1.1"
+  },
+  "devDependencies": {
+    "proxyquire": "^1.7.4",
+    "sinon": "^1.17.3",
+    "tap": "^5.7.0"
+  }
+}
