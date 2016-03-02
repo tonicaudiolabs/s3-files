@@ -2,7 +2,6 @@
   "name": "s3-files",
   "version": "0.0.3",
   "description": "Stream selected files from an Amazon S3 bucket/folder",
-  "readme": "README.md",
   "main": "s3-files.js",
   "scripts": {
     "test": "tap --cov test/test*.js"
