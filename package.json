@@ -18,7 +18,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/orangewise/s3-files.js.git"
+    "url": "https://github.com/orangewise/s3-files.git"
   },
   "dependencies": {
     "aws-sdk": "^2.2.38",
