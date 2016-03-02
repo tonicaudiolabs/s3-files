@@ -1,6 +1,6 @@
 {
   "name": "s3-files",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Stream selected files from an Amazon S3 bucket/folder",
   "readme": "README.md",
   "main": "s3-files.js",
@@ -20,7 +20,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/orangewise/s3-files.git"
-  },  
+  },
   "dependencies": {
     "aws-sdk": "^2.2.38",
     "concat-stream": "^1.5.1",
