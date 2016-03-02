@@ -1,5 +1,8 @@
 # s3-files
 
+[![Build Status](https://travis-ci.org/orangewise/s3-files.js.svg?branch=master)](https://travis-ci.org/orangewise/s3-files.js)
+
+
 Stream selected files from an Amazon s3 bucket/folder.
 
 ## Install
