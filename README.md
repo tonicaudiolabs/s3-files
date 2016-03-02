@@ -1,7 +1,7 @@
 # s3-files
 
 [![Build Status](https://travis-ci.org/orangewise/s3-files.js.svg?branch=master)](https://travis-ci.org/orangewise/s3-files.js)
-
+[![Coverage Status](https://coveralls.io/repos/github/orangewise/s3-files.js/badge.svg?branch=master)](https://coveralls.io/github/orangewise/s3-files.js?branch=master)
 
 Stream selected files from an Amazon s3 bucket/folder.
 
