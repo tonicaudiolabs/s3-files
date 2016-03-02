@@ -15,7 +15,7 @@ npm install s3-files
 
 ```javascript
 
-var s3Files = require('s3-files.js');
+var s3Files = require('s3-files');
 
 var region = 'bucket-region';
 var bucket = 'name-of-s3-bucket';
