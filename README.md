@@ -1,15 +1,23 @@
 # s3-files
 
-[![Build Status](https://travis-ci.org/orangewise/s3-files.js.svg?branch=master)](https://travis-ci.org/orangewise/s3-files.js)
-[![Coverage Status](https://coveralls.io/repos/github/orangewise/s3-files.js/badge.svg?branch=master)](https://coveralls.io/github/orangewise/s3-files.js?branch=master)
+[![Build Status][travis-badge]][travis-url]
+[![Coverage Status][coveralls-badge]][coveralls-url]
+
 
 Stream selected files from an Amazon s3 bucket/folder.
+
 
 ## Install
 
 ```
 npm install s3-files
 ```
+
+
+## AWS Configuration
+
+Refer to the [AWS SDK][aws-sdk-url] for authenticating to AWS prior to using this plugin.
+
 
 ## Usage
 
@@ -55,3 +63,11 @@ If you would like a more fancy report:
 ```
 npm test -- --cov --coverage-report=lcov
 ```
+
+
+[aws-sdk-url]: http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html
+[travis-badge]: https://travis-ci.org/orangewise/s3-files.svg?branch=master
+[travis-url]: https://travis-ci.org/orangewise/s3-files
+[coveralls-badge]: https://coveralls.io/repos/github/orangewise/s3-files/badge.svg?branch=master
+[coveralls-url]: https://coveralls.io/github/orangewise/s3-files?branch=master
+
