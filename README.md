@@ -1,5 +1,6 @@
 # s3-files
 
+[![npm version][npm-badge]][npm-url]
 [![Build Status][travis-badge]][travis-url]
 [![Coverage Status][coveralls-badge]][coveralls-url]
 
@@ -66,6 +67,9 @@ npm test -- --cov --coverage-report=lcov
 
 
 [aws-sdk-url]: http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html
+
+[npm-badge]: https://badge.fury.io/js/s3-files.svg
+[npm-url]: https://badge.fury.io/js/s3-files
 [travis-badge]: https://travis-ci.org/orangewise/s3-files.svg?branch=master
 [travis-url]: https://travis-ci.org/orangewise/s3-files
 [coveralls-badge]: https://coveralls.io/repos/github/orangewise/s3-files/badge.svg?branch=master
