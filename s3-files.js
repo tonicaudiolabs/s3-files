@@ -7,7 +7,7 @@ var concat = require('concat-stream');
 module.exports = s3Files = {};
 
 s3Files.connect = function (opts) {
-  var self = this; 
+  var self = this;
   AWS.config.update({
     'region': opts.region
   });
@@ -21,10 +21,10 @@ s3Files.createKeyStream = function (folder, keys) {
   self.folder = folder;
   if (!self.folder || !keys) return null;
   var paths = [];
-  keys.forEach(function (key) { 
+  keys.forEach(function (key) {
     paths.push(folder + key);
   });
-  return streamify(paths); 
+  return streamify(paths);
 };
 
 s3Files.createFileStream = function (keyStream) {
@@ -43,7 +43,8 @@ s3Files.createFileStream = function (keyStream) {
       var params = { Bucket: self.bucket, Key: file };
       var s3File = self.s3.getObject(params).createReadStream();
 
-      s3File.pipe(concat(function buffersEmit(buffer) {
+      s3File.pipe(
+        concat(function buffersEmit (buffer) {
           // console.log('buffers concatenated, emit data for ', file);
           rs.emit('data', { data: buffer, path: file.replace(self.folder, '') });
         })
@@ -59,4 +60,3 @@ s3Files.createFileStream = function (keyStream) {
     });
   return rs;
 };
-
