@@ -43,6 +43,10 @@ s3Files.createFileStream = function (keyStream) {
       var params = { Bucket: self.bucket, Key: file };
       var s3File = self.s3.getObject(params).createReadStream();
 
+      s3File.on('error', function(err) {
+        rs.emit('error', err);
+      });
+
       s3File.pipe(
         concat(function buffersEmit (buffer) {
           // console.log('buffers concatenated, emit data for ', file);
