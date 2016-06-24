@@ -59,7 +59,7 @@ s3Files.createFileStream = function (keyStream) {
         });
 
       s3File
-        .on('error', function(err) {
+        .on('error', function (err) {
           rs.emit('error', err);
         });
 

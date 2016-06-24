@@ -12,13 +12,13 @@ var s3Files = proxyquire('../s3-files.js', {
 
 // Connect
 t.type(s3Files.s3, undefined);
-s3Files.connect({}); 
+s3Files.connect({});
 t.type(s3Files.s3, 'object');
 
 // Keystream
 var keyStream = s3Files.createKeyStream(undefined, []);
 t.same(keyStream, null);
-var keyStream = s3Files.createKeyStream('folder', undefined);
+keyStream = s3Files.createKeyStream('folder', undefined);
 t.same(keyStream, null);
 
 
@@ -43,23 +43,37 @@ t.test('Filestream needs a bucket', function (child) {
 
   var keyStream = s3Files
     .connect({ bucket: 'bucket' })
-    .createKeyStream('folder/', ['a','b']);
+    .createKeyStream('folder/', ['a', 'b', 'c']);
 
   var s = new PassThrough();
   s.end('hi');
   var readStream = { createReadStream: function () { return s; } };
   s3Stub.getObject = function () { return readStream; };
   var cnt = 0;
-  var fileStream = s3Files.createFileStream(keyStream); 
+  fileStream = s3Files.createFileStream(keyStream);
   fileStream.on('data', function (chunk) {
     child.equal(chunk.data.toString(), 'hi');
     if (cnt === 0) child.equal(chunk.path, 'a');
     if (cnt === 1) {
       child.equal(chunk.path, 'b');
-      child.end();
+    }
+    if (cnt === 2) {
+      s.emit('error', new Error('fail'));
     }
     cnt++;
   });
+  fileStream.on('error', function (chunk) {
+    child.ok(chunk);
+  });
+  fileStream.on('end', function (chunk) {
+    setTimeout(function () {
+      child.end();
+    });
+  });
+
 });
+
+
+
 
 t.end();
