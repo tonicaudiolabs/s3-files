@@ -46,7 +46,7 @@ s3Files.createFileStream = function (keyStream) {
       s3File.pipe(
         concat(function buffersEmit (buffer) {
           // console.log('buffers concatenated, emit data for ', file);
-          rs.emit('data', { data: buffer, path: file.replace(self.folder, '') });
+          rs.emit('data', { data: buffer, path: file.replace(/^.*[\\\/]/, '') });
         })
       );
       s3File
