@@ -20,9 +20,7 @@ npm install s3-files
 Refer to the [AWS SDK][aws-sdk-url] for authenticating to AWS prior to using this plugin.
 
 
-## Usage
-
-Stream files from a bucket folder:
+## Usage: Stream files from a bucket folder:
 
 ```javascript
 
@@ -51,9 +49,7 @@ s3Files.createFileStream(keyStream)
   });
 ```
 
-## Usage
-
-Stream files from the root of a bucket:
+## Usage: Stream files from the root of a bucket:
 
 ```javascript
 
