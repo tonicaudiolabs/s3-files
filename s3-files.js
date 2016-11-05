@@ -17,12 +17,14 @@ s3Files.connect = function (opts) {
 };
 
 s3Files.createKeyStream = function (folder, keys) {
-  var self = this;
-  self.folder = folder;
-  if (!self.folder || !keys) return null;
+  if (!keys) return null;
   var paths = [];
   keys.forEach(function (key) {
-    paths.push(folder + key);
+    if (folder) {
+      paths.push(folder + key);
+    } else {
+      paths.push(key);
+    }
   });
   return streamify(paths);
 };
@@ -39,13 +41,13 @@ s3Files.createFileStream = function (keyStream) {
     .on('data', function (file) {
       fileCounter += 1;
 
-      // console.log('->file', file);
+      //console.log('->file', file);
       var params = { Bucket: self.bucket, Key: file };
       var s3File = self.s3.getObject(params).createReadStream();
 
       s3File.pipe(
         concat(function buffersEmit (buffer) {
-          // console.log('buffers concatenated, emit data for ', file);
+          //console.log('buffers concatenated, emit data for ', file);
           rs.emit('data', { data: buffer, path: file.replace(/^.*[\\\/]/, '') });
         })
       );
