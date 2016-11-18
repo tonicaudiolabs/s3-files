@@ -21,7 +21,7 @@
     "url": "https://github.com/orangewise/s3-files.git"
   },
   "dependencies": {
-    "aws-sdk": "^2.6.15",
+    "aws-sdk": "^2.7.4",
     "concat-stream": "^1.5.2",
     "readable-stream": "^2.1.5",
     "stream-array": "^1.1.2"
