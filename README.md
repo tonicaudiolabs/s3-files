@@ -3,6 +3,7 @@
 [![npm version][npm-badge]][npm-url]
 [![Build Status][travis-badge]][travis-url]
 [![Coverage Status][coveralls-badge]][coveralls-url]
+[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 
 Stream selected files from an Amazon s3 bucket/folder.
@@ -24,15 +25,15 @@ Refer to the [AWS SDK][aws-sdk-url] for authenticating to AWS prior to using thi
 
 ```javascript
 
-var s3Files = require('s3-files');
+var s3Files = require('s3-files')
 
-var region = 'bucket-region';
-var bucket = 'name-of-s3-bucket';
-var folder = 'name-of-bucket-folder/';
-var file1 = 'Image A.png';
-var file2 = 'Image B.png';
-var file3 = 'Image C.png';
-var file4 = 'Image D.png';
+var region = 'bucket-region'
+var bucket = 'name-of-s3-bucket'
+var folder = 'name-of-bucket-folder/'
+var file1 = 'Image A.png'
+var file2 = 'Image B.png'
+var file3 = 'Image C.png'
+var file4 = 'Image D.png'
 
 // Create a stream of keys.
 var keyStream = s3Files
@@ -40,28 +41,28 @@ var keyStream = s3Files
     region: region,
     bucket: bucket    
   })
-  .createKeyStream(folder, [file1, file2, file3, file4]);
+  .createKeyStream(folder, [file1, file2, file3, file4])
 
 // Stream the files.
 s3Files.createFileStream(keyStream)
   .on('data', function (chunk) {
-    console.log(chunk.path, chunk.data.length);
-  });
+    console.log(chunk.path, chunk.data.length)
+  })
 ```
 
 ## Usage: Stream files from the root of a bucket
 
 ```javascript
 
-var s3Files = require('s3-files');
+var s3Files = require('s3-files')
 
-var region = 'bucket-region';
-var bucket = 'name-of-s3-bucket';
-var folder = '';
-var file1 = 'Image A.png';
-var file2 = 'Image B.png';
-var file3 = 'Image C.png';
-var file4 = 'Image D.png';
+var region = 'bucket-region'
+var bucket = 'name-of-s3-bucket'
+var folder = ''
+var file1 = 'Image A.png'
+var file2 = 'Image B.png'
+var file3 = 'Image C.png'
+var file4 = 'Image D.png'
 
 // Create a stream of keys.
 var keyStream = s3Files
@@ -69,13 +70,13 @@ var keyStream = s3Files
     region: region,
     bucket: bucket    
   })
-  .createKeyStream(folder, [file1, file2, file3, file4]);
+  .createKeyStream(folder, [file1, file2, file3, file4])
 
 // Stream the files.
 s3Files.createFileStream(keyStream)
   .on('data', function (chunk) {
-    console.log(chunk.path, chunk.data.length);
-  });
+    console.log(chunk.path, chunk.data.length)
+  })
 ```
 
 
@@ -96,7 +97,6 @@ npm test -- --cov --coverage-report=lcov
 
 
 [aws-sdk-url]: http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html
-
 [npm-badge]: https://badge.fury.io/js/s3-files.svg
 [npm-url]: https://badge.fury.io/js/s3-files
 [travis-badge]: https://travis-ci.org/orangewise/s3-files.svg?branch=master
