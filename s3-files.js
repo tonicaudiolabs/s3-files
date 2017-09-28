@@ -29,7 +29,7 @@ s3Files.createKeyStream = function (folder, keys) {
   return streamify(paths)
 }
 
-s3Files.createFileStream = function (keyStream) {
+s3Files.createFileStream = function (keyStream, preserveFolderPath) {
   var self = this
   if (!self.bucket) return null
 
@@ -48,7 +48,8 @@ s3Files.createFileStream = function (keyStream) {
       s3File.pipe(
         concat(function buffersEmit (buffer) {
           // console.log('buffers concatenated, emit data for ', file);
-          rs.emit('data', { data: buffer, path: file.replace(/^.*[\\/]/, '') })
+          var path = preserveFolderPath ? file : file.replace(/^.*[\\/]/, '')
+          rs.emit('data', { data: buffer, path: path })
         })
       )
       s3File
