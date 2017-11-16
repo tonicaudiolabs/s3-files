@@ -8,10 +8,17 @@ module.exports = s3Files
 
 s3Files.connect = function (opts) {
   var self = this
-  AWS.config.update({
-    'region': opts.region
-  })
-  self.s3 = new AWS.S3()
+
+  if('s3' in opts) {
+    self.s3 = opts.s3
+
+  } else {
+    AWS.config.update({
+      'region': opts.region
+    })
+    self.s3 = new AWS.S3()
+  }
+
   self.bucket = opts.bucket
   return self
 }
