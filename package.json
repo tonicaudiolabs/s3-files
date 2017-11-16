@@ -4,7 +4,7 @@
   "description": "Stream selected files from an Amazon S3 bucket/folder",
   "main": "s3-files.js",
   "scripts": {
-    "test": "tap --cov test/test*.js"
+    "test": "standard && tap --cov test/test*.js"
   },
   "keywords": [
     "aws",
@@ -27,9 +27,10 @@
     "stream-array": "^1.1.2"
   },
   "devDependencies": {
+    "lodash.assign": "^4.2.0",
     "proxyquire": "^1.7.10",
     "sinon": "^1.17.6",
-    "standard": "^8.6.0",
+    "standard": "^10.0.3",
     "tap": "^9.0.3"
   }
 }
