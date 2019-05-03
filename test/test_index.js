@@ -30,6 +30,19 @@ t.test('keyStream', function (child) {
   })
 })
 
+t.test('keyStream without folder having trailing slash', function (child) {
+  var keyStream = s3Files.createKeyStream('folder', ['a', 'b'])
+  var cnt = 0
+  keyStream.on('data', function (chunk) {
+    if (cnt === 0) child.equal(chunk.toString(), 'folder/a')
+    if (cnt === 1) child.equal(chunk.toString(), 'folder/b')
+    cnt++
+  })
+  keyStream.on('end', function () {
+    child.end()
+  })
+})
+
 t.test('keyStream without folder', function (child) {
   var keyStream = s3Files.createKeyStream('', ['a', 'b'])
   var cnt = 0
