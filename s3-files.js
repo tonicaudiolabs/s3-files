@@ -2,6 +2,7 @@ var Stream = require('stream')
 var AWS = require('aws-sdk')
 var streamify = require('stream-array')
 var concat = require('concat-stream')
+var path = require('path')
 
 var s3Files = {}
 module.exports = s3Files
@@ -27,7 +28,7 @@ s3Files.createKeyStream = function (folder, keys) {
   var paths = []
   keys.forEach(function (key) {
     if (folder) {
-      paths.push(folder + key)
+      paths.push(path.join(folder, key))
     } else {
       paths.push(key)
     }
