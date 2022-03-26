@@ -67,7 +67,7 @@ s3Files.createFileStream = function (keyStream, preserveFolderPath) {
     })
 
     s3File.on('error', function (err) {
-      err.file = file;
+      err.file = file
       rs.emit('error', err)
     })
   })
