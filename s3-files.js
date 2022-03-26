@@ -14,7 +14,7 @@ s3Files.connect = function (opts) {
     self.s3 = opts.s3
   } else {
     AWS.config.update({
-      'region': opts.region
+      region: opts.region
     })
     self.s3 = new AWS.S3()
   }
@@ -28,7 +28,7 @@ s3Files.createKeyStream = function (folder, keys) {
   var paths = []
   keys.forEach(function (key) {
     if (folder) {
-      paths.push(path.join(folder, key))
+      paths.push(path.posix.join(folder, key))
     } else {
       paths.push(key)
     }
@@ -44,34 +44,32 @@ s3Files.createFileStream = function (keyStream, preserveFolderPath) {
   rs.readable = true
 
   var fileCounter = 0
-  keyStream
-    .on('data', function (file) {
-      fileCounter += 1
+  keyStream.on('data', function (file) {
+    fileCounter += 1
 
-      // console.log('->file', file);
-      var params = { Bucket: self.bucket, Key: file }
-      var s3File = self.s3.getObject(params).createReadStream()
+    // console.log('->file', file);
+    var params = { Bucket: self.bucket, Key: file }
+    var s3File = self.s3.getObject(params).createReadStream()
 
-      s3File.pipe(
-        concat(function buffersEmit (buffer) {
-          // console.log('buffers concatenated, emit data for ', file);
-          var path = preserveFolderPath ? file : file.replace(/^.*[\\/]/, '')
-          rs.emit('data', { data: buffer, path: path })
-        })
-      )
-      s3File
-        .on('end', function () {
-          fileCounter -= 1
-          if (fileCounter < 1) {
-            // console.log('all files processed, emit end');
-            rs.emit('end')
-          }
-        })
-
-      s3File
-        .on('error', function (err) {
-          rs.emit('error', err)
-        })
+    s3File.pipe(
+      concat(function buffersEmit (buffer) {
+        // console.log('buffers concatenated, emit data for ', file);
+        var path = preserveFolderPath ? file : file.replace(/^.*[\\/]/, '')
+        rs.emit('data', { data: buffer, path: path })
+      })
+    )
+    s3File.on('end', function () {
+      fileCounter -= 1
+      if (fileCounter < 1) {
+        // console.log('all files processed, emit end');
+        rs.emit('end')
+      }
     })
+
+    s3File.on('error', function (err) {
+      err.file = file
+      rs.emit('error', err)
+    })
+  })
   return rs
 }
