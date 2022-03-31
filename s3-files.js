@@ -46,6 +46,9 @@ s3Files.createFileStream = function (keyStream, preserveFolderPath) {
   var fileCounter = 0
   keyStream.on('data', function (file) {
     fileCounter += 1
+    if (fileCounter > 5) {
+      keyStream.pause() // we add some 'throttling' there
+    }
 
     // console.log('->file', file);
     var params = { Bucket: self.bucket, Key: file }
@@ -60,6 +63,9 @@ s3Files.createFileStream = function (keyStream, preserveFolderPath) {
     )
     s3File.on('end', function () {
       fileCounter -= 1
+      if (keyStream.isPaused()) {
+        keyStream.resume()
+      }
       if (fileCounter < 1) {
         // console.log('all files processed, emit end');
         rs.emit('end')
