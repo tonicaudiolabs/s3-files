@@ -1,7 +1,7 @@
 {
   "name": "s3-files",
-  "version": "2.0.3",
-  "description": "Stream selected files from an Amazon S3 bucket/folder",
+  "version": "3.0.0",
+  "description": "Stream selected files from an Amazon S3 bucket/folder with AWS SDK V3",
   "main": "s3-files.js",
   "scripts": {
     "test": "standard && tap --cov test/test*.js"
@@ -15,20 +15,23 @@
     "stream"
   ],
   "author": "Ronald Luitwieler",
+  "contributors": [
+    "Allison Clift-Jennings"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/orangewise/s3-files.git"
+    "url": "https://github.com/tonicaudiolabs/s3-files"
   },
   "dependencies": {
-    "aws-sdk": "^2.449.0",
+    "@aws-sdk/client-s3": "^3.279.0",
     "concat-stream": "^2.0.0",
     "stream-array": "^1.1.2"
   },
   "devDependencies": {
     "proxyquire": "^2.1.0",
-    "sinon": "^7.3.2",
-    "standard": "^12.0.1",
-    "tap": "^13.1.2"
+    "sinon": "^15.0.1",
+    "standard": "^17.0.0",
+    "tap": "^16.3.4"
   }
 }
