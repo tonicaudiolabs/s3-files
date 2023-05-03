@@ -1,7 +1,7 @@
 {
   "name": "s3-files",
-  "version": "3.0.0",
-  "description": "Stream selected files from an Amazon S3 bucket/folder with AWS SDK V3",
+  "version": "3.3.0",
+  "description": "Stream selected files from an Amazon S3 bucket/folder with AWS SDK (v3).",
   "main": "s3-files.js",
   "scripts": {
     "test": "standard && tap --cov test/test*.js"
@@ -29,8 +29,8 @@
     "stream-array": "^1.1.2"
   },
   "devDependencies": {
-    "proxyquire": "^2.1.0",
-    "sinon": "^15.0.1",
+    "proxyquire": "^2.1.3",
+    "sinon": "^15.0.4",
     "standard": "^17.0.0",
     "tap": "^16.3.4"
   }
