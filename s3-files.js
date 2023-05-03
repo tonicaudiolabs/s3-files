@@ -1,6 +1,5 @@
 const Stream = require("stream");
-//var AWS = require('aws-sdk')
-const AWSS3 = require("@aws-sdk/client-s3");
+const AWS = require("@aws-sdk/client-s3");
 
 const streamify = require("stream-array");
 const concat = require("concat-stream");
@@ -16,7 +15,7 @@ s3Files.connect = function (opts) {
   if ("s3client" in opts) {
     self.s3client = opts.s3client;
   } else {
-    const s3client = new AWSS3.S3Client({
+    const s3client = new AWS.S3Client({
       region: opts.region,
       credentials: {
         accessKeyId: opts.key,
@@ -61,7 +60,7 @@ s3Files.createFileStream = function (keyStream, preserveFolderPath) {
 
     try {
       const params = { Bucket: self.bucket, Key: file };
-      const command = new AWSS3.GetObjectCommand(params);
+      const command = new AWS.GetObjectCommand(params);
 
       const s3Item = await self.s3client.send(command);
 
